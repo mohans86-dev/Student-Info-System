@@ -27,3 +27,9 @@ This project demonstrates **OOPs concept, file handling, input validation, and m
    ```bash
    javac StudentMenu.java Student.java
    java StudentMenu
+
+## Sample output
+  ```bash
+  Student ID   Student Name       Student Class   Student Roll
+1            Mohan Singh        4th             107
+2            Alice Johnson      5th             203
