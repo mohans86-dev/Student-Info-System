@@ -1,7 +1,7 @@
-# 📚 Student Management System (Java)
+# 📚 Student Information System (Java)
 
 A simple **Java console-based application** for managing student records.  
-This project demonstrates **file handling, input validation, and menu-driven programming** in Java.
+This project demonstrates **OOPs concept, file handling, input validation, and menu-driven programming** in Java.
 
 ---
 
