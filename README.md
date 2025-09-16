@@ -30,6 +30,9 @@ This project demonstrates **OOPs concept, file handling, input validation, and m
 
 ## Sample output
   ```bash
-  Student ID   Student Name       Student Class   Student Roll
-1            Mohan Singh        4th             107
-2            Alice Johnson      5th             203
+ Roll       Name                 Class      Parent Phone   
+-------------------------------------------------------------
+107        Mohan Singh          4th        9876543210
+91         Jitendra Singh       4th        9123456789
+141        Ravi Prakash         4th        8765412341
+121        Om Singh             4th        8765432190
