@@ -32,7 +32,7 @@ class StudentRepository {
 }
 
 // ======== Menu-driven Program =========
-public class StudentManagement {
+public class StudentMenu {
     private List<Student> students;
     private StudentRepository repo;
 
@@ -141,3 +141,4 @@ public class StudentManagement {
         sm.menu();
     }
 }
+
