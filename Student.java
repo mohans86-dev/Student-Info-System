@@ -1,71 +1,65 @@
-import java.io.*;
 
+// ======== Base Class (Abstraction + Inheritance) =========
+abstract class Person {
+    protected String name;
+    protected String parentPhone;
 
-public class Student {
-    private final String FILE_NAME="studentdata.txt";
-    public String studentId;
-    public String studentName;
-    public String studentClass;
-    public String studentRollNo;
-    private boolean acceptStudentInformation(){
-        try{
-            BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Enter the student ID:");
-            studentId=br.readLine();
-            if (studentId.isEmpty()){
-                System.out.println("please enter student ID");
-                return false;
-            }
-            System.out.println("enter the student name : ");
-            studentName=br.readLine();
-            if (studentName.isEmpty()){
-                System.out.println("please enter student name:");
-                return false;
-            }
-            System.out.println("enter the student class : ");
-            studentClass=br.readLine();
-            if (studentClass.isEmpty()){
-                System.out.println("please enter student class:");
-                return false;
-            }
-            System.out.println("enter the student roll no : ");
-            studentRollNo=br.readLine();
-            if (studentRollNo.isEmpty()){
-                System.out.println("please enter student roll no:");
-                return false;
-            }
-        } catch (IOException e){
-            System.out.println(e.getMessage());
-        }
-        return true;
+    public abstract void display(); // Pure virtual equivalent
+
+    // Encapsulation: Getters/Setters
+    public void setName(String n) { this.name = n; }
+    public String getName() { return this.name; }
+
+    public void setParentPhone(String p) { this.parentPhone = p; }
+    public String getParentPhone() { return this.parentPhone; }
+}
+
+// ======== Derived Class Student (Encapsulation + Inheritance) =========
+class Student extends Person {
+    private int roll;
+    private String studentClass;
+
+    public Student() {}
+
+    public Student(int r, String n, String c, String p) {
+        this.roll = r;
+        this.name = n;
+        this.studentClass = c;
+        this.parentPhone = p;
     }
-    public boolean saveStudentInformation(){
-        if (!acceptStudentInformation()){
-            return false;
-        }
-        try{
-            PrintWriter pw=new PrintWriter(new FileWriter(new File(FILE_NAME),true));
-            pw.println(studentId+","+studentName+","+studentClass+","+studentRollNo);
-            pw.close();
-        } catch (IOException e){
-            System.out.println(e.getMessage());
-        }
-        return true;
+
+    // Encapsulation: Getters/Setters
+    public void setRoll(int r) { this.roll = r; }
+    public int getRoll() { return this.roll; }
+
+    public void setStudentClass(String c) { this.studentClass = c; }
+    public String getStudentClass() { return this.studentClass; }
+
+    // Polymorphism: Method overriding
+    @Override
+    public void display() {
+        System.out.printf("%-10d %-20s %-10s %-15s\n", roll, name, studentClass, parentPhone);
     }
-    public boolean printStudentInformation(){
-        try{
-            BufferedReader br=new BufferedReader(new FileReader(FILE_NAME));
-            System.out.println(String.format("%-12s %-18s %-15s %-10s", "Student ID", "Student Name", "Student Class", "Student Roll"));
-            String dataLine=br.readLine();
-            while (dataLine!=null){
-                String[] data=dataLine.split(",");
-                System.out.println(String.format("%-12s %-18s %-15s %-10s",data[0],data[1],data[2],data[3]));
-                dataLine=br.readLine();
+
+    // File I/O helper (convert to string for saving)
+    public String toFileString() {
+        return roll + "," + name + "," + studentClass + "," + parentPhone;
+    }
+
+    // Static method to create Student from file line
+    public static Student fromFileString(String line) {
+        String[] tokens = line.split(",");
+        if (tokens.length == 4) {
+            try {
+                int r = Integer.parseInt(tokens[0]);
+                String n = tokens[1];
+                String c = tokens[2];
+                String p = tokens[3];
+                return new Student(r, n, c, p);
+            } catch (Exception e) {
+                return null;
             }
-            br.close();
-        } catch (IOException e){
-            System.out.println(e.getMessage());
         }
-        return true;
+        return null;
     }
 }
