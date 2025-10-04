@@ -20,8 +20,8 @@ This project demonstrates **OOPs concept, file handling, input validation, and m
 
 ## 📂 File Structure
 
-├── Student.java # Handles student input, saving, and printing
-├── StudentMenu.java # Main program with menu-driven interaction
+├── Student.java # Handles student input, saving, and printing<br>
+├── StudentMenu.java # Main program with menu-driven interaction<br>
 ├── studentdata.txt # Stores student records (auto-created)---
 
 ## 🛠️ How It Works
