@@ -6,13 +6,15 @@ This project demonstrates **OOPs concept, file handling, input validation, and m
 ---
 
 ## 🚀 Features
-- ➕ **Add Student** – Enter student details (ID, Name, Class, Roll No) and save them to a file.
+- ➕ **Add Student** – Enter student details (Roll No, Name, Class, Phone no.) and save them to a file.
 - 📖 **View Students** – Display all saved student records in a neatly formatted table.
 - 💾 **Persistent Storage** – Data is stored in `studentdata.txt` file.
 - 🖥️ **Menu-driven Console UI** – Easy navigation with 3 options:
   1. Add student
-  2. Print all students
-  3. Exit
+  2. Edit student details
+  3. Delete student detail
+  4. Show student details
+  5. Exit
 
 ---
 
