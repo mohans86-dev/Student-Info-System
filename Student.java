@@ -2,16 +2,16 @@
 // ======== Base Class (Abstraction + Inheritance) =========
 abstract class Person {
     protected String name;
-    protected String parentPhone;
+    protected String phone;
 
-    public abstract void display(); // Pure virtual equivalent
+    public abstract void display();
 
     // Encapsulation: Getters/Setters
     public void setName(String n) { this.name = n; }
     public String getName() { return this.name; }
 
-    public void setParentPhone(String p) { this.parentPhone = p; }
-    public String getParentPhone() { return this.parentPhone; }
+    public void setParentPhone(String p) { this.phone = p; }
+    public String getParentPhone() { return this.phone; }
 }
 
 // ======== Derived Class Student (Encapsulation + Inheritance) =========
@@ -25,7 +25,7 @@ class Student extends Person {
         this.roll = r;
         this.name = n;
         this.studentClass = c;
-        this.parentPhone = p;
+        this.phone = p;
     }
 
     // Encapsulation: Getters/Setters
@@ -38,12 +38,12 @@ class Student extends Person {
     // Polymorphism: Method overriding
     @Override
     public void display() {
-        System.out.printf("%-10d %-20s %-10s %-15s\n", roll, name, studentClass, parentPhone);
+        System.out.printf("%-10d %-20s %-10s %-15s\n", roll, name, studentClass, phone);
     }
 
     // File I/O helper (convert to string for saving)
     public String toFileString() {
-        return roll + "," + name + "," + studentClass + "," + parentPhone;
+        return roll + "," + name + "," + studentClass + "," + phone;
     }
 
     // Static method to create Student from file line
