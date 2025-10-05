@@ -32,7 +32,7 @@ class StudentRepository {
 }
 
 // ======== Menu-driven Program =========
-public class StudentMenu {
+public class StudentManagement {
     private List<Student> students;
     private StudentRepository repo;
 
@@ -48,6 +48,12 @@ public class StudentMenu {
     public void addStudent(Scanner sc) {
         System.out.print("Enter Roll No: ");
         int roll = sc.nextInt();
+        for (Student s : students){
+            if (s.getRoll() == roll) {
+                System.out.println("Roll number already exists!");
+                return;
+            }
+        }
         sc.nextLine(); // clear buffer
         System.out.print("Enter Name: ");
         String name = sc.nextLine();
@@ -57,7 +63,7 @@ public class StudentMenu {
         String phone = sc.nextLine();
 
         students.add(new Student(roll, name, cls, phone));
-        repo.saveAll(students); // Save at end
+        repo.saveAll(students); // Saving
         System.out.println("Student added successfully!");
     }
 
@@ -87,14 +93,14 @@ public class StudentMenu {
         System.out.print("Enter Roll No of Student to Delete: ");
         int roll = sc.nextInt();
         sc.nextLine();
-        Iterator<Student> it = students.iterator();
-        while (it.hasNext()) {
-            Student s = it.next();
-            if (s.getRoll() == roll) {
-                it.remove();
+        int idx=0;
+        for(Student std:students){
+            if(std.getRoll()==roll){
+                students.remove(idx);
                 System.out.println("Record deleted successfully!");
                 return;
             }
+            idx++;
         }
         System.out.println("Student not found!");
     }
@@ -109,6 +115,21 @@ public class StudentMenu {
         for (Student s : students) s.display();
     }
 
+    public void searchStudent(Scanner sc) {
+        System.out.print("Search by Roll No or Name: ");
+        String input = sc.nextLine();
+        boolean found = false;
+
+        for (Student s : students) {
+            if (String.valueOf(s.getRoll()).equals(input) || s.getName().equalsIgnoreCase(input)) {
+                s.display();
+                found = true;
+            }
+        }
+        if (!found)
+            System.out.println("No student found!");
+    }
+
     public void menu() {
         Scanner sc = new Scanner(System.in);
         int choice;
@@ -118,7 +139,8 @@ public class StudentMenu {
             System.out.println("2. Edit Student");
             System.out.println("3. Delete Student");
             System.out.println("4. Show All Students");
-            System.out.println("5. Exit");
+            System.out.println("5. Search");
+            System.out.println("6. Exit");
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
             sc.nextLine();
@@ -128,10 +150,11 @@ public class StudentMenu {
                 case 2 -> editStudent(sc);
                 case 3 -> deleteStudent(sc);
                 case 4 -> showAllStudents();
-                case 5 -> exit();
+                case 5 -> searchStudent(sc);
+                case 6 -> exit();
                 default -> System.out.println("Invalid choice! Try again.");
             }
-        } while (choice != 5);
+        } while (choice != 6);
         sc.close();
     }
 
@@ -141,4 +164,3 @@ public class StudentMenu {
         sm.menu();
     }
 }
-
